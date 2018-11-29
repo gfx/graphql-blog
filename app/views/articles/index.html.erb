@@ -1,0 +1,14 @@
+<main class="articles">
+<h1>Articles</h1>
+
+<%= render "new" %>
+
+<hr/>
+
+<%- @articles.each do |article| %>
+  <div class="article">
+    <h2><%= article.name %></h2>
+    <p><%= article.content %> (<%= time_ago_in_words(article.created_at) %> ago)</p>
+  </div>
+<%- end %>
+</main>
