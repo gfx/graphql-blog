@@ -1,5 +1,50 @@
 {
   "name": "graphql-blog",
   "private": true,
-  "dependencies": {}
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "webpack-dev-server": "webpack-dev-server --config config/webpack.config.js",
+    "build:development": "NODE_ENV=development webpack --progress --config config/webpack.config.js",
+    "build:production": "NODE_ENV=production webpack --progress --config config/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gfx/graphql-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gfx/graphql-blog/issues"
+  },
+  "homepage": "https://github.com/gfx/graphql-blog#readme",
+  "engines": {
+    "node": ">= 8"
+  },
+  "dependencies": {
+    "@types/react": "^16.7.11",
+    "@types/react-dom": "^16.0.11",
+    "core-js": "^2.5.7",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@bitjourney/check-es-version-webpack-plugin": "^1.0.2",
+    "@gfx/zopfli": "^1.0.10",
+    "@types/node": "^10.12.11",
+    "awesome-typescript-loader": "^5.2.1",
+    "compression-webpack-plugin": "^2.0.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-manifest-plugin": "^2.0.4"
+  }
 }
