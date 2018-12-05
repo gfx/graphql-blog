@@ -1,27 +1,26 @@
 interface RequestOptions {
-  method: "GET" | "POST";
-  url: string;
-  body?: object;
+  query: string;
+  variables?: object;
 }
 
 interface Response<T> {
   data: T;
 }
 
-export async function request<T>({ method, url, body }: RequestOptions): Promise<Response<T>> {
+export async function request<T>({ query, variables }: RequestOptions): Promise<Response<T>> {
   const fetchOptions: RequestInit = {
-    method,
+    method: "POST",
     headers: {
       "X-Requested-With": "xhr",
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
   };
 
-  if (body) {
-    fetchOptions.headers!["Content-Type"] = "application/json";
-    fetchOptions.body = JSON.stringify(body);
-  }
-
-  const response = await fetch(url, fetchOptions);
+  const response = await fetch("/graphql", fetchOptions);
   const json = await response.json();
   if (json.data) {
     return Promise.resolve(json);
