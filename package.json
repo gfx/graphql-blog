@@ -29,23 +29,23 @@
   },
   "dependencies": {
     "@typed-decorators/autobind": "^0.3.0",
-    "@types/react": "^16.7.11",
-    "@types/react-dom": "^16.0.11",
-    "core-js": "^2.5.7",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
+    "core-js": "^3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@bitjourney/check-es-version-webpack-plugin": "^1.0.2",
-    "@gfx/zopfli": "^1.0.10",
-    "@types/node": "^10.12.11",
-    "awesome-typescript-loader": "^5.2.1",
+    "@gfx/zopfli": "^1.0.11",
+    "@types/node": "^10.14.4",
     "compression-webpack-plugin": "^2.0.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.1",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
     "webpack-manifest-plugin": "^2.0.4"
   }
 }
