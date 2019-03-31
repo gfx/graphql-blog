@@ -4,23 +4,22 @@ const fs = require("fs");
 const path = require("path");
 
 const webpack = require("webpack");
-const atLoader = require("awesome-typescript-loader");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const { CheckEsVersionPlugin } = require("@bitjourney/check-es-version-webpack-plugin");
 const { gzip } = require("@gfx/zopfli");
 
-const production = ["production", "staging"].includes(process.env.NODE_ENV);
+const isProduction = ["production", "staging"].includes(process.env.NODE_ENV);
 
 const devServerPort = 3808;
 const assetDir = "assets";
 
 const config = {
-  mode: production ? "production" : "development",
+  mode: isProduction ? "production" : "development",
   entry: {
     application: [
-      "core-js/shim",
+      "core-js",
       "./frontend/application.ts",
     ],
   },
@@ -29,7 +28,7 @@ const config = {
     publicPath: `/${assetDir}/`,
     path: `${__dirname}/../public/${assetDir}`,
 
-    filename: production ? "[name]-[chunkhash].js" : "[name].js",
+    filename: isProduction ? "[name]-[chunkhash].js" : "[name].js",
   },
 
   resolve: {
@@ -50,9 +49,8 @@ const config = {
       },
     }),
     new ManifestPlugin({
-      writeToFileEmit: production,
+      writeToFileEmit: isProduction,
     }),
-    new atLoader.CheckerPlugin(),
   ],
   module: {
     rules: [
@@ -60,10 +58,10 @@ const config = {
         test: /\.(?:ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "awesome-typescript-loader",
+          loader: "ts-loader",
           options: {
-            configFileName: "tsconfig.json",
-            useCache: true,
+            configFile: "tsconfig.json",
+            transpileOnly: !isProduction,
           },
         },
       },
@@ -71,7 +69,7 @@ const config = {
   },
 };
 
-if (production) {
+if (isProduction) {
   config.optimization = {
     noEmitOnErrors: true,
     minimize: process.env.MINIMIZE !== "false",
